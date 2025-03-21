@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const [formStatus, setFormStatus] = useState("");
@@ -47,39 +46,34 @@ const Hero = () => {
     <img src="/4.png" className="w-32 max-h-fit" alt="Chemisphere Merchandise" />
   </div> */}
   {/* Text Section */}
-  <div className="flex-1">
+  {/* <div className="flex-1">
    <p className='mobile:text-center py-4'> Resize, Format Converter & AI video enhancer for Instagram, YouTube, Facebook, Twitter and other social media </p> 
-  </div>
+  </div> */}
 </div>
 
 
             <div className="bg-white p-4 rounded-3xl laptop:mt-4 mobile:mt-12">
               <div className="mx-auto p-5">
                 <div className="rounded flex flex-col max-w-fit mx-auto w-full">
-                <iframe 
+                <img 
   className="rounded-3xl w-full aspect-video" 
-  src="" 
+  src="/gifhero.svg" 
   title="YouTube video player" 
   frameborder="0" 
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
   referrerpolicy="strict-origin-when-cross-origin" 
   allowFullScreen>
-</iframe>
+</img>
 
 
                   <div className="relative px-6 pt-5 pb-5 bg-black rounded-3xl mt-4">
                     <p
                       className="font-normal text-lg text-white  transition duration-500 ease-in-out"
                     >
-                      Why choose Chemisphere?
+                      Why choose us?
                     </p>
-                    <p className="text-gray-400 text-sm">
-                      There are customized classes for you to suit your needs.
-                      Also, you will get a lot of video and text resources to
-                      learn along with the most neat class notes which will
-                      probably make you fall in love with Chemistry again! You
-                      will be able to track your progress at every level with
-                      weekly and monthly tests.s
+                    <p className="text-gray-300 text-sm pt-2">
+                    AspectAI is an innovative AI-powered video resizer and format converter that allows creators, brands, and businesses to effortlessly adapt their videos for multiple platforms. With a single click, our intelligent system optimizes aspect ratios, re-crops frames, and reformats videos while maintaining high quality. Whether you are posting on YouTube, Instagram, TikTok, or other social media platforms, AspectAI ensures your content is perfectly optimized for every audience.
                     </p>
                   </div>
                 </div>
@@ -97,19 +91,15 @@ const Hero = () => {
                   alt="Aspect AI banner"
                 />
               </div>
-           <div className='text-center pb-8'>
+           <div className='text-center pb-6 mt-4'>
                    <Link href="/sign-up">
-                    <button className='bg-black text-white px-4 py-2 rounded-lg mr-8'>
-                      Sign up
+                    <button className='bg-black text-white px-4 py-2 rounded-lg '>
+                    ꗃ unlock a new world
                     </button>
                    </Link>
                    
                     
-                   <Link href="/sign-in">
-                    <button className='bg-black text-white px-4 py-2 rounded-lg' >
-                      Log in
-                    </button>
-                   </Link>
+                 
                     </div><div></div>            </div>
           </div>
                   {/* Right Section */}

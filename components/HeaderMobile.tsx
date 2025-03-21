@@ -19,7 +19,7 @@ const HeaderMobile: React.FC = () => {
     <header className="w-screen bg-white z-20 laptop:hidden rounded-b-3xl top-0 fixed mt-0 pt-0  border-b-darkGold">
       <div className="flex justify-between items-center p-4 ">
         {/* Logo */}
-        <img src="/chemisphere-logo.png" className=" w-28 h-auto font-bold text-lg text-neutral-700"></img>
+        <img src="/aspectailogo.png" className=" w-28 h-auto font-bold text-lg text-neutral-700"></img>
 
         {/* Mobile Menu Button */}
         <button
@@ -98,8 +98,8 @@ const HeaderMobile: React.FC = () => {
               Privacy Policy
             </a>
           </li>
-          <Link href="https://wa.me/918850436230?text=I%20wish%20to%20go%20ahead%20with%20the%20admissions%20at%20Chemisphere" target='__blank' className="px-4 py-2 text-sm font-medium text-white bg-chemisphere rounded-md hover:bg-black hover:text-white transition-colors">
-          Go ahead with admissions →
+          <Link href=' ' target='__blank' className="px-4 py-2 text-sm font-medium text-white bg-chemisphere rounded-md hover:bg-black hover:text-white transition-colors">
+          Explore plans
         </Link>
         </ul>
       </div>

@@ -1,6 +1,4 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
-import Sidebar from './../../components/sidebar';
 
 const DashboardLayout = ({
     children
@@ -13,11 +11,9 @@ const DashboardLayout = ({
              md:fixed md:inset-y-0 z-[80] bg-gray-100">
                 <div>
                     
-                    <Sidebar />
                 </div>
             </div>
             <main className="md:pl-72" >
-                <Navbar />
                 {children}
             </main>
         </div>

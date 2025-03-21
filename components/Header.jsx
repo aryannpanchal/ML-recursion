@@ -2,9 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { AiOutlineClose } from "react-icons/ai";
-import { FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 const Header = () => {
   const [navigationMenuOpen, setNavigationMenuOpen] = useState(false);
