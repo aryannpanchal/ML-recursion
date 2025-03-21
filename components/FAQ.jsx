@@ -23,7 +23,7 @@ const FAQ = () => {
         /><hr />
         <Accordion
           title={<h5 className='font-bold laptop:text-lg'>How will tests be conducted?</h5>}
-          answer = {<p className='pt-2 text-black laptop:text-md opacity-95'>Our coaching program leverages technology to enhance the learning experience. The Android/iOS app facilitates a convenient platform for conducting tests and enables parents to track their child's performance. This integration of technology ensures a modern and efficient learning environment. All the reports of the tests are also shared with the parent so that their performance is tracked.</p>}
+          answer = {<p className='pt-2 text-black laptop:text-md opacity-95'>Our coaching program leverages technology to enhance the learning experience. The Android/iOS app facilitates a convenient platform for conducting tests and enables parents to track their childs performance. This integration of technology ensures a modern and efficient learning environment. All the reports of the tests are also shared with the parent so that their performance is tracked.</p>}
           className='lg:text-left svg'
         />        <hr />
 
