@@ -25,7 +25,7 @@ const Footer = () => {
                 {/* Popular Links */}
                 <div className="flex flex-col laptop:gap-8 mobile:gap-4 text-sm">
                     <a href='#about' className="text-base font-bold tracking-wide text-gray-900">About</a>
-                    <a href='#classes' className="text-base font-bold tracking-wide text-gray-900">Classes</a>
+                    <a href='#classes' className="text-base font-bold tracking-wide text-gray-900">Services</a>
                     <a href='#stats' className="text-base font-bold tracking-wide text-gray-900">Stats</a>
                     <a href='#contact' className="text-base font-bold tracking-wide text-gray-900">Contact</a>
 

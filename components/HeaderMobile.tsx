@@ -63,11 +63,11 @@ const HeaderMobile: React.FC = () => {
           </li>
           <li>
             <a
-              href="#classes"
+              href="#services"
               className="text-neutral-700 font-medium py-2 w-full text-center hover:bg-neutral-100 rounded-md"
               onClick={handleCloseMenu}
             >
-              Classes
+              Services
             </a>
           </li>
           <li>
@@ -89,16 +89,8 @@ const HeaderMobile: React.FC = () => {
               Contact Me
             </a>
           </li>
-          <li>
-            <a
-              href="privacy-policy"
-              className="text-neutral-700 font-medium py-2 w-full text-center hover:bg-neutral-100 rounded-md"
-              onClick={handleCloseMenu}
-            >
-              Privacy Policy
-            </a>
-          </li>
-          <Link href=' ' target='__blank' className="px-4 py-2 text-sm font-medium text-white bg-chemisphere rounded-md hover:bg-black hover:text-white transition-colors">
+          
+          <Link href='#pricing ' target='__blank' className="px-4 py-2 text-sm font-medium text-white bg-chemisphere rounded-md hover:bg-black hover:text-white transition-colors">
           Explore plans
         </Link>
         </ul>
