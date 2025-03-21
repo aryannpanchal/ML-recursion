@@ -24,7 +24,7 @@ const FAQ = () => {
           <hr />
           <Accordion
             title={<h5 className='font-bold laptop:text-lg'>What platforms does AspectAI support?</h5>}
-            answer={<p className='pt-2 text-black laptop:text-md opacity-95'>AspectAI supports all major video platforms, including YouTube, Instagram, TikTok, Facebook, and more. Our intelligent video resizing and format conversion ensure that your content is perfectly tailored to each platforms requirements. Whether you're sharing videos on social media, marketing, or business presentations, AspectAI adapts to meet your needs effortlessly.</p>}
+            answer={<p className='pt-2 text-black laptop:text-md opacity-95'>AspectAI supports all major video platforms, including YouTube, Instagram, TikTok, Facebook, and more. Our intelligent video resizing and format conversion ensure that your content is perfectly tailored to each platforms requirements. Whether you are sharing videos on social media, marketing, or business presentations, AspectAI adapts to meet your needs effortlessly.</p>}
             className='lg:text-left svg'
           />
           <hr />
