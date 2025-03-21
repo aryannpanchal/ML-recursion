@@ -1,4 +1,5 @@
 'use client';
+import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -102,7 +103,9 @@ const Header = () => {
       {/* Social Media & Button Section */}
          {/* LinkedIn */}
 
-         
+         <SignedIn>
+        <UserButton />
+      </SignedIn>
           
       <div className="flex items-center space-x-8 mobile:hidden laptop:block text-gray-500">
         <Link href="#pricing" target='__blank' className="px-4 py-2 text-sm font-medium text-white bg-blue-900 rounded-md hover:bg-black hover:text-white transition-colors">
