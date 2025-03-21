@@ -1,167 +1,115 @@
-"use client"
-import { useState } from "react";
-import Header from '@/components/Header'
-import HeaderMobile from '@/components/HeaderMobile'
-import Footer from '@/components/Footer'
+"use client";
+import Header from "@/components/Header";
+import HeaderMobile from "@/components/HeaderMobile";
+import { useState, useEffect } from "react";
 
-const DashboardPage = () => {
-  const [videoFile, setVideoFile] = useState(null);
-  const [socialMedia, setSocialMedia] = useState("");
-  const [videoFormat, setVideoFormat] = useState("mp4");
-  const [isUploading, setIsUploading] = useState(false);  // Upload state
-  const [uploadProgress, setUploadProgress] = useState(0); // Progress percentage
+const Page = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [platform, setPlatform] = useState("YouTube");
+  const [outputVideo, setOutputVideo] = useState(null);
+  const [processing, setProcessing] = useState(false);
 
-  const handleVideoChange = (e) => {
-    setVideoFile(e.target.files[0]);
+  const PLATFORM_SETTINGS = {
+    YouTube: "3840x2160",
+    InstagramFeed: "1080x1350",
+    InstagramStories: "1080x1920",
+    Twitter: "1920x1200",
+    TikTok: "1080x1920",
+    Facebook: "3840x2160",
   };
 
-  const handleSocialMediaChange = (e) => {
-    setSocialMedia(e.target.value);
-  };
-
-  const handleVideoFormatChange = (e) => {
-    setVideoFormat(e.target.value);
-  };
-
-  const handleUpload = (file) => {
-    // Simulate video upload process with progress
-    const total = 100;
-    let progress = 0;
-
-    const interval = setInterval(() => {
-      progress += 5;
-      setUploadProgress(progress);
-
-      if (progress >= total) {
-        clearInterval(interval);
-        setIsUploading(false);
-        alert("Video uploaded successfully!");
+  // Fetch the latest processed video when the page loads
+  useEffect(() => {
+    const fetchLatestVideo = async () => {
+      try {
+        let response = await fetch("http://127.0.0.1:8000/latest_video/");
+        let result = await response.json();
+        if (result.latest_video) {
+          setOutputVideo(`http://127.0.0.1:8000/processed/${result.latest_video}`);
+        }
+      } catch (error) {
+        console.error("Error fetching latest video:", error);
       }
-    }, 500);
+    };
+    fetchLatestVideo();
+  }, []);
 
-    // Simulate upload delay
-    setIsUploading(true);
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!videoFile || !socialMedia) {
-      alert("Please fill out all fields!");
-      return;
+  const handleUpload = async () => {
+    if (!selectedFile) return alert("Please select a video");
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("resolution", PLATFORM_SETTINGS[platform]);
+
+    setProcessing(true);
+
+    try {
+      let response = await fetch("http://127.0.0.1:8000/upload/", {
+        method: "POST",
+        body: formData,
+      });
+
+      let result = await response.json();
+      if (result.processed_video) {
+        setOutputVideo(`http://127.0.0.1:8000/processed/${result.processed_video}`);
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+    } finally {
+      setProcessing(false);
     }
-
-    // Start the upload simulation
-    handleUpload(videoFile);
-
-    // You can integrate actual API here to upload the file to server/local storage
-    // const formData = new FormData();
-    // formData.append("video", videoFile);
-    // formData.append("socialMedia", socialMedia);
-    // formData.append("videoFormat", videoFormat);
-    // await fetch("/api/upload", { method: "POST", body: formData });
   };
 
   return (
-    <div>
+    <>
       <Header />
       <HeaderMobile />
-      <section>
-        <div className="mt-44">
-          <h1 className="text-black font-semibold laptop:text-4xl mobile:text-3xl text-center">Nice, you are in.</h1>
-          <h2 className="mt-6 text-black font-thin laptop:text-3xl mobile:text-2xl text-center">Upload your video to continue</h2>
-        </div>
+      <div className="mt-44 min-h-full py-44 flex flex-col items-center justify-center bg-gray-900 text-white">
+        <h1 className="text-3xl font-bold mb-6">🎥 AI-Powered Video Converter</h1>
 
-        {/* Video Upload Form */}
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg mt-8">
-          <form onSubmit={handleSubmit}>
-            {/* Video File Input */}
-            <div className="mb-4">
-              <label className="block text-lg font-medium" htmlFor="video">
-                Choose your video file
-              </label>
-              <input
-                type="file"
-                id="video"
-                name="video"
-                accept="video/*"
-                onChange={handleVideoChange}
-                className="mt-2 p-2 w-full border border-gray-300 rounded-md"
-              />
-            </div>
+        <input type="file" accept="video/*" onChange={handleFileChange} className="mb-4" />
+        
+        <select className="mb-4 p-2 text-black" onChange={(e) => setPlatform(e.target.value)}>
+          {Object.keys(PLATFORM_SETTINGS).map((platform) => (
+            <option key={platform} value={platform}>{platform}</option>
+          ))}
+        </select>
 
-            {/* Social Media Selection */}
-            <div className="mb-4">
-              <label className="block text-lg font-medium">Select Social Media Platform</label>
-              <select
-                value={socialMedia}
-                onChange={handleSocialMediaChange}
-                className="mt-2 p-2 w-full border border-gray-300 rounded-md"
-                required
-              >
-                <option value="">Select a platform</option>
-                <option value="instagram">Instagram</option>
-                <option value="youtube">YouTube</option>
-                <option value="facebook">Facebook</option>
-                <option value="twitter">Twitter</option>
-              </select>
-            </div>
+        <button
+          onClick={handleUpload}
+          disabled={!selectedFile || processing}
+          className="bg-blue-500 px-4 py-2 rounded disabled:bg-gray-500"
+        >
+          {processing ? "Processing..." : "Convert Video"}
+        </button>
 
-            {/* Video Format Selection */}
-            <div className="mb-6">
-              <label className="block text-lg font-medium">Choose Video Format</label>
-              <div className="flex gap-6">
-                <div className="flex items-center">
-                  <input
-                    type="radio"
-                    id="mp4"
-                    name="videoFormat"
-                    value="mp4"
-                    checked={videoFormat === "mp4"}
-                    onChange={handleVideoFormatChange}
-                    className="mr-2"
-                  />
-                  <label htmlFor="mp4" className="text-lg">MP4</label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="radio"
-                    id="mkv"
-                    name="videoFormat"
-                    value="mkv"
-                    checked={videoFormat === "mkv"}
-                    onChange={handleVideoFormatChange}
-                    className="mr-2"
-                  />
-                  <label htmlFor="mkv" className="text-lg">MKV</label>
-                </div>
-              </div>
-            </div>
-
-            {/* Process Video Button */}
-            <div className="mb-4 text-center">
-              <button
-                type="submit"
-                className="px-6 py-3 text-white bg-blue-900 rounded-md hover:bg-blue-900 transition"
-                disabled={isUploading}
-              >
-                {isUploading ? "Uploading..." : "Process Video"}
-              </button>
-            </div>
-
-            {/* Loading Animation / Progress Bar */}
-            {isUploading && (
-              <div className="text-center mt-4">
-                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 border-blue-900 rounded-full"></div>
-                <div className="mt-2 text-lg text-blue-900">{`Uploading... ${uploadProgress}%`}</div>
-              </div>
-            )}
-          </form>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+        {outputVideo && (
+          <div className="mt-6 flex flex-col items-center">
+            <h2 className="text-lg font-semibold">Processed Video:</h2>
+            <video src={outputVideo} controls className="mt-2 w-full max-w-lg border border-gray-500 rounded-lg shadow-lg" />
+            <p className="mt-2 text-sm text-gray-400 break-all">🔗 Video URL: {outputVideo}</p>
+            <button
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = outputVideo;
+                link.download = "processed_video.mp4";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+              className="mt-4 px-6 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+            >
+              ⬇ Download Video
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
-export default DashboardPage;
+export default Page;
