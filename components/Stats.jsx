@@ -6,7 +6,7 @@ const Stats = () => {
 
   return (
     <>
-    <p className='font-semibold laptop:mt-12 text-center laptop:text-4xl mobile:text-2xl pb-12 mobile:pt-24 laptop:pt-0'>Stats at a glance</p>
+    <p id='stats' className='font-semibold laptop:mt-12 text-center laptop:text-4xl mobile:text-2xl pb-12 mobile:pt-24 laptop:pt-0'>Stats at a glance</p>
     <div
         className="mobile:mb-24 text-gray-100 body-font laptop:mb-36 shadow-xl border-primary border-2 laptop:mx-24 mobile:max-w-screen mobile:mx-6 rounded-2xl"
       >
