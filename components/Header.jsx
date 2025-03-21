@@ -49,10 +49,10 @@ const Header = () => {
         </li>
         <li>
           <a
-            href="#classes"
+            href="#services"
             className="text-sm font-medium text-gray-700 hover:text-chemisphere transition-colors"
           >
-            Classes 
+            Services
           </a>
         </li>
         <li>
@@ -95,14 +95,6 @@ const Header = () => {
             className="text-sm font-medium text-gray-700 hover:text-chemisphere transition-colors"
           >
             Contact
-          </a>
-        </li>
-        <li>
-          <a
-            href="privacy-policy"
-            className="text-sm font-medium text-gray-700 hover:text-chemisphere transition-colors"
-          >
-            Privacy Policy
           </a>
         </li>
       </ul>
